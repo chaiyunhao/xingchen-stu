@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.OrderNodeInstancesMapper">
+  <resultMap id="BaseResultMap" type="cn.xingchen.model.OrderNodeInstances">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="fid" jdbcType="BIGINT" property="fid" />
+    <result column="names" jdbcType="VARCHAR" property="names" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="created_at" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updated_at" />
+    <result column="first_node" jdbcType="TINYINT" property="first_node" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, fid, names, `desc`, created_at, updated_at, first_node
+  </sql>
+  <select id="selectByExample" parameterType="cn.xingchen.model.OrderNodeInstancesExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from parana_order_node_instances
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from parana_order_node_instances
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from parana_order_node_instances
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.xingchen.model.OrderNodeInstancesExample">
+    delete from parana_order_node_instances
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.xingchen.model.OrderNodeInstances">
+    insert into parana_order_node_instances (id, fid, names, 
+      desc, created_at, updated_at, 
+      first_node)
+    values (#{id,jdbcType=BIGINT}, #{fid,jdbcType=BIGINT}, #{names,jdbcType=VARCHAR}, 
+      #{desc,jdbcType=VARCHAR}, #{created_at,jdbcType=TIMESTAMP}, #{updated_at,jdbcType=TIMESTAMP}, 
+      #{first_node,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xingchen.model.OrderNodeInstances">
+    insert into parana_order_node_instances
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="names != null">
+        names,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+      <if test="created_at != null">
+        created_at,
+      </if>
+      <if test="updated_at != null">
+        updated_at,
+      </if>
+      <if test="first_node != null">
+        first_node,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=BIGINT},
+      </if>
+      <if test="names != null">
+        #{names,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="created_at != null">
+        #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_at != null">
+        #{updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="first_node != null">
+        #{first_node,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.xingchen.model.OrderNodeInstancesExample" resultType="java.lang.Long">
+    select count(*) from parana_order_node_instances
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update parana_order_node_instances
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.fid != null">
+        fid = #{record.fid,jdbcType=BIGINT},
+      </if>
+      <if test="record.names != null">
+        names = #{record.names,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desc != null">
+        desc = #{record.desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.created_at != null">
+        created_at = #{record.created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updated_at != null">
+        updated_at = #{record.updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.first_node != null">
+        first_node = #{record.first_node,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update parana_order_node_instances
+    set id = #{record.id,jdbcType=BIGINT},
+      fid = #{record.fid,jdbcType=BIGINT},
+      names = #{record.names,jdbcType=VARCHAR},
+      desc = #{record.desc,jdbcType=VARCHAR},
+      created_at = #{record.created_at,jdbcType=TIMESTAMP},
+      updated_at = #{record.updated_at,jdbcType=TIMESTAMP},
+      first_node = #{record.first_node,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xingchen.model.OrderNodeInstances">
+    update parana_order_node_instances
+    <set>
+      <if test="fid != null">
+        fid = #{fid,jdbcType=BIGINT},
+      </if>
+      <if test="names != null">
+        names = #{names,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="created_at != null">
+        created_at = #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_at != null">
+        updated_at = #{updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="first_node != null">
+        first_node = #{first_node,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xingchen.model.OrderNodeInstances">
+    update parana_order_node_instances
+    set fid = #{fid,jdbcType=BIGINT},
+      names = #{names,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      created_at = #{created_at,jdbcType=TIMESTAMP},
+      updated_at = #{updated_at,jdbcType=TIMESTAMP},
+      first_node = #{first_node,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

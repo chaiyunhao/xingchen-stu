@@ -12,6 +12,10 @@
         <module>stu-mybatis</module>
         <module>stu-design-patterns</module>
         <module>stu-zookeeper</module>
+        <module>stu-algorithms</module>
+        <module>stu-leetcode</module>
+        <module>stu-jvm</module>
+        <module>stu-spring</module>
     </modules>
 
     <properties>

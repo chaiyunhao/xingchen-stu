@@ -13,9 +13,6 @@ public class Solution_98 {
         node.right.right = new TreeNode(6);
 
         Solution_98 solution = new Solution_98();
-//        System.out.println(solution.getMin(node, 5));
-//        System.out.println(solution.getMax(node, 0));
-//        System.out.println(solution.isValidBST(node));
 
         Queue<Integer> queue = new LinkedList();
         solution.inorderTraversal(node, queue);

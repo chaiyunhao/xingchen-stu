@@ -15,7 +15,7 @@
         <module>stu-algorithms</module>
         <module>stu-leetcode</module>
         <module>stu-jvm</module>
-        <module>stu-spring</module>
+        <module>stu-jdk-base</module>
     </modules>
 
     <properties>
